@@ -16,15 +16,15 @@ length_input=st.selectbox("Select Explanation Length",["Short (1-2paragraph)","M
 
 template = load_prompt('template.json')
 
-# fill the placeholders 
-prompt = template.invoke({
-    'paper_input' : paper_input,
-    'style_input' : style_input,
-    'length_input' : length_input
-})
 
 
 model = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite")
 if st.button('Summarize'):
-    result = model.invoke(prompt)
+    # fill the placeholders 
+    chain = template | model
+    result  = chain.invoke({
+        'paper_input' : paper_input,
+        'style_input' : style_input,
+        'length_input' : length_input
+    })
     st.write(result.text)
