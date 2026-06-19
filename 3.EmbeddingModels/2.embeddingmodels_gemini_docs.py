@@ -13,4 +13,6 @@ document=[
 
 result = embeddings.embed_documents(document)
 
+# nothing change 
+
 print(str(result))
