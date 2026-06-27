@@ -22,10 +22,10 @@ However, the device isn't perfect. It is heavy and bulky, which can make one-han
                                  
 Review by SG31.
 """)
-# print('Key themes:',result['key_themes'])
-# print('Summary: ',result['summary'])
-# print('sentiment: ',result['sentiment'])
-# print('Pros: ',result['pros'])
-# print('Cons: ',result['cons'])
+print('Key themes:',result['key_themes'])
+print('Summary: ',result['summary'])
+print('sentiment: ',result['sentiment'])
+print('Pros: ',result['pros'])
+print('Cons: ',result['cons'])
 print(result['name'])
 
