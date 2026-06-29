@@ -18,3 +18,4 @@ result = model.invoke(prompt)
 final_result = parser.parse(result.text)
 
 print(final_result)
+print(type(final_result))
