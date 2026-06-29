@@ -12,10 +12,7 @@ template = PromptTemplate(
     partial_variables={'format_instructions': parser.get_format_instructions()}
 )
 
-prompt = template.format()
-# print(prompt)
-result = model.invoke(prompt)
-final_result = parser.parse(result.text)
-
-print(final_result)
-print(type(final_result))
+chain = template | model | parser
+result = chain.invoke({}) # when there is no input variable then you have to give empty dict as a input
+print(result)
+print(type(result))
