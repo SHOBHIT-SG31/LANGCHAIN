@@ -4,12 +4,8 @@ from langchain_core.prompts import PromptTemplate
 
 load_dotenv()
 
-llm = HuggingFaceEndpoint(
-    repo_id="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
-    task = "text-generation"
-)
 
-model = ChatHuggingFace(llm=llm)
+model = ChatGoogleGenerativeAI(model='gemini-3.1-flash-lite')
 
 # 1. detailed report 
 template1=PromptTemplate(
