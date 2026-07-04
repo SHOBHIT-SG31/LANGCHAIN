@@ -2,7 +2,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 # from langchain_core.output_parsers import Struct
-from langchain.output_parsers import ResponseSchema, StructuredOutputParser
+from langchain_core.output_parsers import ResponseSchema, StructuredOutputParser
 
 load_dotenv()
 
