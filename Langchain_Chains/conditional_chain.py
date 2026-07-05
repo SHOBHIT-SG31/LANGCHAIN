@@ -16,7 +16,7 @@ model2 = ChatGroq(model='llama-3.1-8b-instant')
 parser = StrOutputParser()
 
 class Feedback(BaseModel):
-    sentiment: Literal['postive','negative'] = Field(description='Give the sentiment of the feedback')
+    sentiment: Literal['Positive','Negative'] = Field(description='Give the sentiment of the feedback')
 
 parser2 = PydanticOutputParser(pydantic_object=Feedback)
 
@@ -27,4 +27,5 @@ prompt = PromptTemplate(
 )
 
 classifier_chain = prompt | model1 | parser2
-print(classifier_chain.invoke({'feedback':'This is a terrible smartphone'}))
+result = classifier_chain.invoke({'feedback':'This is a wonderful smartphone'}).sentiment
+print(result)
