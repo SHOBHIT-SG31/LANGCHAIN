@@ -1,7 +1,7 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
-from langchain_core.runnables import RunnableParallel
+from langchain_core.runnables import RunnableParallel, RunnableBranch, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
@@ -27,5 +27,24 @@ prompt = PromptTemplate(
 )
 
 classifier_chain = prompt | model1 | parser2
-result = classifier_chain.invoke({'feedback':'This is a wonderful smartphone'}).sentiment
-print(result)
+
+prompt2 = PromptTemplate(
+    template='Write an appropriate response to this positive feedback \n {feedback}',
+    input_variables=['feedback']
+)
+prompt3 = PromptTemplate(
+    template='Write an appropriate response to this negative feedback \n {feedback}',
+    input_variables=['feedback']
+)
+
+branch_chain = RunnableBranch(
+    (lambda x:x.sentiment == 'positive', prompt2 | model1 | parser),
+    (lambda x:x.sentiment == 'negative', prompt3 | model1 | parser),
+    RunnableLambda(lambda x: "could not find sentiment")
+)
+
+chain = classifier_chain | branch_chain
+
+print(chain.invoke({'feedback':'This is a terrible phone'}))
+
+chain.get_graph().print_ascii()
