@@ -25,7 +25,7 @@ prompt2 = PromptTemplate(
 
 report_gen_chain = RunnableSequence(prompt1, model1, parser)
 branch_chain = RunnableBranch(
-    (lambda x:len(x.split()) > 500 , RunnableSequence(prompt2, model1, parser )),
+    (lambda x:len(x.split()) > 200 , RunnableSequence(prompt2, model1, parser )),
     RunnablePassthrough()
 )
 final_chain = RunnableSequence(report_gen_chain,branch_chain)
