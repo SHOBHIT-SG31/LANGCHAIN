@@ -4,9 +4,9 @@ loader = PyPDFLoader('D:\Drive D\GenAI\GenAI Langchain\LangChain 03\langchain_do
 docs = loader.load()
 
 splitter = CharacterTextSplitter(
-    chunk_size=100,
+    chunk_size=1000,
     chunk_overlap=0,
     separator=''
 )
 result=splitter.split_documents(docs)
-print(result[0])
+print(result[0].page_content)
