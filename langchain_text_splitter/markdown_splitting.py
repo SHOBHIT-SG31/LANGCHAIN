@@ -1,0 +1,86 @@
+from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
+text="""
+# 🧥 Dark Blue Invisibility Cloak (OpenCV Project)
+
+Turn yourself invisible on camera using a **dark blue cloak** and some computer vision magic!  
+This project uses **OpenCV** and **NumPy** to detect a cloak of a specific color and replace it with the background, creating a Harry Potter–style invisibility effect. ✨
+
+---
+
+## 🚀 Features
+- Captures a clean background automatically (no manual snapshots needed).
+- Detects **dark blue cloak** using HSV color masking.
+- Smooths mask with morphological operations for better accuracy.
+- Real-time invisibility effect using webcam.
+- Easy to quit with a single key press (`q`).
+
+---
+
+## 📦 Requirements
+Make sure you have the following installed:
+
+- Python 3.15
+- OpenCV → `pip install opencv-python`  
+- NumPy → `pip install numpy`  
+
+---
+
+## ▶️ How to Run
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-username/invisibility-cloak.git
+   cd invisibility-cloak
+2. Run the script:
+  ```bash
+  python cloak.py
+```
+3. Steps:
+- Stay out of the frame while background is being captured.
+- Wear a dark blue cloak (or cloth).
+- Watch yourself disappear in real-time!
+
+---
+
+## 🖼️ Demo
+- Step 1: Background capture
+- Step 2: Cloak detection
+- Step 3: Invisibility effect applied
+
+---
+
+## ⚙️ Code Highlights
+- Background Capture: Uses median of multiple frames for a clean background.
+- Color Detection: HSV mask for dark blue range [100, 100, 50] → [130, 255, 255].
+- Final Output: Combines cloak area (background) + visible area (current frame).
+
+---
+
+## 📌 Notes
+- Works best in good lighting conditions.
+- Avoid wearing other blue shades in the frame.
+- You can tweak HSV values in get_mask_for_dark_blue() for different cloak colors.
+
+---
+
+## 🎯 Future Improvements
+- Add support for multiple cloak colors.
+- Enhance mask accuracy with advanced segmentation.
+- Save output video automatically.
+
+---
+
+## 👨‍💻 Author
+- Developed with ❤️ using Python + OpenCV.
+Feel free to fork, improve, and share your invisibility cloak experiments!
+
+---
+"""
+
+splitter = RecursiveCharacterTextSplitter.from_language(
+    language=Language.MARKDOWN,
+    chunk_size=1000,
+    chunk_overlap=0
+)
+chunks = splitter.split_text(text)
+print(len(chunks))
+print(chunks[2])
