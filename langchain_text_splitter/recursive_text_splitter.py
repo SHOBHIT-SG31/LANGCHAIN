@@ -6,7 +6,7 @@ In today's era, the world feels smaller than ever before. Technology connects di
 
 Ultimately, the world is both fragile and resilient. It is a shared home that requires care, respect, and cooperation. Whether through science, culture, or compassion, humanity has the power to shape the future of this planet, ensuring that its beauty and diversity continue to thrive for generations to come."""
 splitter = RecursiveCharacterTextSplitter(
-    chunk_size=100,
+    chunk_size=500,
     chunk_overlap=0
 )
 chunks = splitter.split_text(text) 
